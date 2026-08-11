@@ -9,14 +9,13 @@
 
 ## 2. Kết quả kỹ thuật
 
-- Điểm `validate_logs.py`:
+- Điểm `validate_logs.py`: **100/100** (xem [`submission/evidence/validator_result.txt`](evidence/validator_result.txt))
 - Tổng số traces:
 - Số PII leak còn lại:
 - Link/đường dẫn dashboard:
-
 ## 3. Logging và tracing
 
-- Evidence correlation ID:
+- Evidence correlation ID: [`submission/evidence/api_log_sample.jsonl`](evidence/api_log_sample.jsonl) — hai dòng log `request_received` → `response_sent` của cùng một request `/chat` cùng `correlation_id=req-40b35680` (correlation ID ổn định xuyên suốt request).
 - Evidence PII redaction:
 - Evidence trace waterfall:
 - Giải thích một span đáng chú ý:
@@ -94,4 +93,6 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
-| | | | |
+| Thành viên | Phần việc | Commit/PR | Điều đã học |
+|---|---|---|---|
+| Người 1 — API & Middleware | Correlation ID (middleware, `clear_contextvars` + bind + header `x-request-id`/`x-response-time-ms`), JSON log sạch PII (`scrub_event` trong processor chain), global exception handler (`unhandled_exception` kèm correlation_id), gắn metadata request (`user_id_hash`, `session_id`, `feature`, `model`, `env`) | `21c0623` (app/middleware.py, app/main.py, app/logging_config.py) | Thứ tự processor structlog quyết định dữ liệu được scrub trước khi JSON render; `merge_contextvars` tự gắn context vào mọi log trong request; phải `clear_contextvars()` trước khi bind để tránh rò rỉ correlation ID giữa các request; không log `user_id` thô mà luôn qua `hash_user_id`. |

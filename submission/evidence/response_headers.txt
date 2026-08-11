@@ -1,0 +1,6 @@
+=== curl -i: x-request-id + x-response-time-ms ===
+HTTP/1.1 200 OK
+x-request-id: req-4304677f
+x-response-time-ms: 158
+
+{"answer":"...","correlation_id":"req-4304677f","latency_ms":153,"tokens_in":21,"tokens_out":160,"cost_usd":0.002463,"quality_score":0.8}
