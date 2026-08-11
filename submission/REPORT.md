@@ -8,13 +8,13 @@
 - Commit SHA cuối: lấy bằng `git rev-parse HEAD` sau khi push (SHA này nộp trên Codelabs)
 - Thành viên và vai trò:
 
-| Người | Vai trò | Git identity |
+| Người | Vai trò | Name & ID |
 |---|---|---|
-| Người 1 | API & Middleware — correlation ID, JSON log, exception handler, metadata request | `Le Minh Nguyen <leminhnguyenai@gmail.com>` |
-| Người 2 | Security Engineer — PII redaction, regex scrubber | `HungBil <nguyendonghung70@gmail.com>` |
-| Người 3 | Metrics & Dashboard — 6 panel, dashboard contract, validator | `HoangVuongBui <buihoangvuong777@gmail.com>` |
-| Người 4 | SRE & Alerts — SLO, alert rules, runbook | `ChiQuang <quangnch@gmail.com>` |
-| Người 5 | QA & Chief Investigator — load test, tracing sub-component, prompt versioning, challenge, report | `thdatt <ngthdatt915@gmail.com>` |
+| Người 1 | API & Middleware — correlation ID, JSON log, exception handler, metadata request | `Nguyễn Lê Minh - 2A202601045` |
+| Người 2 | Security Engineer — PII redaction, regex scrubber | `Đặng Tiến Thành - 2A202601305` |
+| Người 3 | Metrics & Dashboard — 6 panel, dashboard contract, validator | `Bùi Hoàng Vương - 2A202601553` |
+| Người 4 | SRE & Alerts — SLO, alert rules, runbook | `Nguyễn Chí Quang - 2A202601932` |
+| Người 5 | QA & Chief Investigator — load test, tracing sub-component, prompt versioning, challenge, report | `Ngô Thành Đạt - 2A202601323` |
 
 ## 2. Kết quả kỹ thuật
 
