@@ -19,7 +19,7 @@
 ## 2. Kết quả kỹ thuật
 
 - Điểm `validate_logs.py`: **100/100** (851 record, 278 correlation ID duy nhất, 0 PII leak) — [`validate_logs_final.txt`](evidence/validate_logs_final.txt); baseline đầu buổi ở [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt)
-- Tổng số traces: **150 trace** trên Langfuse Cloud ([`traces_list.png`](evidence/traces_list.png)); 45 trace gần nhất được xuất kèm metadata trong [`traces.md`](evidence/traces.md) / [`traces.json`](evidence/traces.json)
+- Tổng số traces: **150 trace** trên Langfuse Cloud. Ảnh [`trace_list.png`](evidence/trace_list.png) chụp view Observations: `Is Root Observation = True` đếm được **150** (mỗi root observation là một trace) và **436 SPAN** con mang tên `rag-retrieval` / `prompt-resolve` / `llm-generate`. 45 trace gần nhất được xuất kèm metadata (session, tag correlation ID, prompt label/version) trong [`traces.md`](evidence/traces.md) / [`traces.json`](evidence/traces.json)
 - Số PII leak còn lại: **0** (email, số điện thoại VN, CCCD, số thẻ đều bị che trước khi ghi log) — [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md)
 - Link/đường dẫn dashboard: [`dashboard_overview.png`](evidence/dashboard_overview.png), [`dashboard_incident.png`](evidence/dashboard_incident.png); contract tại [`config/dashboard.yaml`](../config/dashboard.yaml)
 
@@ -228,7 +228,7 @@ Báo cáo điều tra đầy đủ, sinh tự động từ log: [`investigation.
 | Yêu cầu | Ảnh | File kiểm chứng được |
 |---|---|---|
 | Kết quả `validate_logs.py` | — | [`validate_logs_final.txt`](evidence/validate_logs_final.txt), [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt) |
-| Danh sách ≥ 10 traces | [`traces_list.png`](evidence/traces_list.png) | [`traces.md`](evidence/traces.md), [`traces.json`](evidence/traces.json) (45 trace) |
+| Danh sách ≥ 10 traces | [`trace_list.png`](evidence/trace_list.png) (150 root observation) | [`traces.md`](evidence/traces.md), [`traces.json`](evidence/traces.json) (45 trace, xuất trực tiếp từ Langfuse API) |
 | Một trace waterfall | [`trace_waterfall.png`](evidence/trace_waterfall.png) | [`traces.md`](evidence/traces.md) mục "Trace waterfall" |
 | Hai prompt version + trace đúng version/label | [`prompt_versions.png`](evidence/prompt_versions.png) | [`prompt_versions.md`](evidence/prompt_versions.md) |
 | Bằng chứng đổi label / rollback | [`prompt_rollback_v2.png`](evidence/prompt_rollback_v2.png), [`prompt_rollback_v1.png`](evidence/prompt_rollback_v1.png) | [`prompt_versions.md`](evidence/prompt_versions.md), [`prompt_versions_run.txt`](evidence/prompt_versions_run.txt) |
