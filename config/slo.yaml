@@ -4,16 +4,16 @@ slis:
   latency_p95_ms:
     objective: 3000
     target: 99.5
-    note: Muc tieu ban dau dong bo voi dashboard; xac nhan lai sau khi co baseline cua nhom
+    note: "Baseline khoảng 150 ms; rag_slow đẩy P95 lên khoảng 2650 ms. SLO 3000 ms theo dashboard, alert sớm tại 2000 ms; target 99.5% cho phép tối đa 0.5% cửa sổ đo vi phạm"
   error_rate_pct:
     objective: 2
     target: 99.0
-    note: Ty le loi khong vuot qua 2 phan tram trong it nhat 99 phan tram cua so do
+    note: "tool_fail tạo error rate 33.33%; mục tiêu giữ error rate không vượt quá 2%, target 99% cho phép tối đa 1% cửa sổ đo vi phạm"
   cost_usd_60m:
     objective: 2.5
     target: 100.0
-    note: Tong chi phi trong moi cua so 60 phut khong vuot qua 2.5 USD
+    note: "Baseline khoảng 0.1212 USD cho 90 request; 2.5 USD là hard budget nên target 100% cửa sổ 60 phút phải đạt"
   quality_score_avg:
     objective: 0.75
     target: 95.0
-    note: Diem quality trung binh dat toi thieu 0.75 trong it nhat 95 phan tram cua so do
+    note: "Baseline quality trung bình 0.88; target 95% cho phép 5% cửa sổ dao động vì quality chỉ là proxy"
