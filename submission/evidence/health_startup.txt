@@ -1,0 +1,3 @@
+=== /health + app_started startup log ===
+{"service": "day13-observability-lab", "env": "dev", "payload": {"tracing_enabled": false}, "event": "app_started", "level": "info", "ts": "2026-08-11T05:05:09.373228Z"}
+{"ok":true,"tracing_enabled":false,"incidents":{"rag_slow":false,"tool_fail":false,"cost_spike":false}}

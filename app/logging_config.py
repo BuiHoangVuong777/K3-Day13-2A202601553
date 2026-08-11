@@ -8,7 +8,7 @@ from typing import Any
 import structlog
 from structlog.contextvars import merge_contextvars
 
-from .pii import scrub_text
+from .pii import scrub_value
 
 LOG_PATH = Path(os.getenv("LOG_PATH", "data/logs.jsonl"))
 
@@ -23,15 +23,17 @@ class JsonlFileProcessor:
 
 
 
-def scrub_event(_: Any, __: str, event_dict: dict[str, Any]) -> dict[str, Any]:
-    payload = event_dict.get("payload")
-    if isinstance(payload, dict):
-        event_dict["payload"] = {
-            k: scrub_text(v) if isinstance(v, str) else v for k, v in payload.items()
-        }
-    if "event" in event_dict and isinstance(event_dict["event"], str):
-        event_dict["event"] = scrub_text(event_dict["event"])
-    return event_dict
+def scrub_event(
+    _: Any,
+    __: str,
+    event_dict: dict[str, Any],
+) -> dict[str, Any]:
+    """Scrub the entire structured log event before persistence."""
+
+    return {
+        key: scrub_value(value, key)
+        for key, value in event_dict.items()
+    }
 
 
 
@@ -40,12 +42,24 @@ def configure_logging() -> None:
     structlog.configure(
         processors=[
             merge_contextvars,
+
             structlog.processors.add_log_level,
-            structlog.processors.TimeStamper(fmt="iso", utc=True, key="ts"),
-            scrub_event,
+
+            structlog.processors.TimeStamper(
+                fmt="iso",
+                utc=True,
+                key="ts",
+            ),
+
             structlog.processors.StackInfoRenderer(),
             structlog.processors.format_exc_info,
+
+            # Security gate:
+            # scrub the COMPLETE event before it is persisted.
+            scrub_event,
+
             JsonlFileProcessor(),
+
             structlog.processors.JSONRenderer(),
         ],
         wrapper_class=structlog.make_filtering_bound_logger(logging.INFO),

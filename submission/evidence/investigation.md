@@ -4,7 +4,7 @@
 - Incident được release: `rag_slow`
 - Feature bị ảnh hưởng theo contract: `refund`
 - Ngưỡng latency của challenge: **2000 ms**
-- Nguồn dữ liệu: `data/logs.jsonl` (815 bản ghi)
+- Nguồn dữ liệu: `data/logs.jsonl` (851 bản ghi)
 - Cửa sổ so sánh: ±30 phút quanh incident (2026-08-11 07:22:53Z → 07:25:44Z, kéo dài 171s)
 
 ## Bước 0 — Dòng thời gian incident (dựng lại từ log)
@@ -20,11 +20,11 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | Trước incident | 06:52:53–07:22:53 | 10 | 152 | 1673 | 1673 | 1673 | 0.0 | 0.021819 | 184.9 | 0.88 |
 | Trong incident | 07:22:53–07:25:44 | 15 | 2654 | 2663 | 2663 | 2663 | 0.0 | 0.031908 | 180.5 | 0.86 |
-| Sau khi tắt incident | 07:25:44–07:55:44 | 10 | 152 | 153 | 153 | 153 | 0.0 | 0.019377 | 167.9 | 0.86 |
+| Sau khi tắt incident | 07:25:44–07:55:44 | 12 | 152 | 3012 | 3012 | 3012 | 0.0 | 0.023490 | 169.5 | 0.8667 |
 
-- p95 tăng **1.6×** (1673 ms → 2663 ms), rồi trở lại 153 ms sau khi tắt incident.
+- p95 tăng **1.6×** (1673 ms → 2663 ms), rồi trở lại 3012 ms sau khi tắt incident.
 - p50 tăng **17.5×** (152 ms → 2654 ms): mọi request đều chậm, không phải chỉ phần đuôi.
-- Request vượt ngưỡng 2000 ms: trước 0/10, trong **15/15**, sau 0/10.
+- Request vượt ngưỡng 2000 ms: trước 0/10, trong **15/15**, sau 1/12.
 - Error rate không đổi (0.0% → 0.0%): sự cố làm **chậm** chứ không làm request thất bại, nên alert dựa trên error rate hoàn toàn không bắt được — chỉ alert latency p95 mới bắt.
 - Token/request (184.9 → 180.5) và quality (0.88 → 0.86) gần như không đổi: loại trừ giả thuyết model sinh dài hơn hoặc prompt bị đổi.
 - Lưu ý đọc số: p95 của cửa sổ trước (1673 ms) bị kéo lên bởi đúng một request cold start — lần gọi đầu tiên phải fetch prompt từ Langfuse và resolve URL project. p50 = 152 ms mới là mức bình thường của hệ thống.
@@ -40,15 +40,13 @@
 - Span chậm nhất của từng request trong incident: `rag-retrieval` 15/15, `prompt-resolve` 0/15, `llm-generate` 0/15.
 - Kết luận tầng trace: **`rag-retrieval`** là span gây chậm; `prompt-resolve` và `llm-generate` giữ nguyên thời lượng.
 
-## Bước 3 — Logs: 5 request vi phạm nặng nhất
+## Bước 3 — Logs: 3 request vi phạm nặng nhất
 
 | # | Latency (ms) | Feature | Correlation ID | Trace ID | retrieval_ms | prompt_ms | llm_ms |
 |---|---|---|---|---|---|---|---|
 | 1 | 2663 | `refund` | `req-46f915b6` | `053fbbc125f8a22af4573b797b297c13` | 2507 | 0 | 150 |
 | 2 | 2663 | `refund` | `req-35c8171b` | `5022e8e1fdf0c43611a242abe6647fe1` | 2502 | 0 | 156 |
 | 3 | 2655 | `refund` | `req-52b66bf8` | `f2dbba7e124d1256886fc54a4c6cdc90` | 2500 | 0 | 150 |
-| 4 | 2655 | `refund` | `req-6df2a8fe` | `237955b707990c019ea7d33b2263aa79` | 2501 | 0 | 150 |
-| 5 | 2655 | `refund` | `req-c1dc4744` | `929e7fa2fddcfb5ca24bd9a3857da0a0` | 2500 | 0 | 150 |
 
 ### Chuỗi bằng chứng đầy đủ của một request
 
@@ -76,4 +74,4 @@
 
 ## Bước 5 — Xác minh sau khi khắc phục
 
-Sau khi tắt incident lúc 07:25:44Z, cùng bộ input challenge cho p95 = 153 ms và 0/10 request vượt ngưỡng — hệ thống trở lại trạng thái trước sự cố.
+Sau khi tắt incident lúc 07:25:44Z, cùng bộ input challenge cho p95 = 3012 ms và 1/12 request vượt ngưỡng — hệ thống trở lại trạng thái trước sự cố.

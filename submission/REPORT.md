@@ -18,14 +18,14 @@
 
 ## 2. Kết quả kỹ thuật
 
-- Điểm `validate_logs.py`: **100/100** (851 record, 278 correlation ID duy nhất, 0 PII leak) — [`validate_logs_final.txt`](evidence/validate_logs_final.txt); baseline đầu buổi ở [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt)
+- Điểm `validate_logs.py`: **100/100** (851 record, 278 correlation ID duy nhất, 0 PII leak) — [`validate_logs_final.txt`](evidence/validate_logs_final.txt); baseline đầu buổi ở [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt); kết quả Người 1 chạy ở [`validator_result.txt`](evidence/validator_result.txt)
 - Tổng số traces: **150 trace** trên Langfuse Cloud. Ảnh [`trace_list.png`](evidence/trace_list.png) chụp view Observations: `Is Root Observation = True` đếm được **150** (mỗi root observation là một trace) và **436 SPAN** con mang tên `rag-retrieval` / `prompt-resolve` / `llm-generate`. 45 trace gần nhất được xuất kèm metadata (session, tag correlation ID, prompt label/version) trong [`traces.md`](evidence/traces.md) / [`traces.json`](evidence/traces.json)
 - Số PII leak còn lại: **0** (email, số điện thoại VN, CCCD, số thẻ đều bị che trước khi ghi log) — [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md)
 - Link/đường dẫn dashboard: [`dashboard_overview.png`](evidence/dashboard_overview.png), [`dashboard_incident.png`](evidence/dashboard_incident.png); contract tại [`config/dashboard.yaml`](../config/dashboard.yaml)
 
 ## 3. Logging và tracing
 
-- **Evidence correlation ID**: [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 1. Mỗi request sinh 5 dòng log ở 2 service (`api` và `agent`) mang cùng `correlation_id`, cùng `user_id_hash`, `session_id`, `feature`, `model`, `env`. Correlation ID do middleware sinh theo dạng `req-<8 hex>` hoặc nhận lại từ header `x-request-id`, và được trả về client qua header cùng tên.
+- **Evidence correlation ID**: [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 1, và [`api_log_sample.jsonl`](evidence/api_log_sample.jsonl) + [`response_headers.txt`](evidence/response_headers.txt) do Người 1 thu. Mỗi request sinh 5 dòng log ở 2 service (`api` và `agent`) mang cùng `correlation_id`, cùng `user_id_hash`, `session_id`, `feature`, `model`, `env`. Correlation ID do middleware sinh theo dạng `req-<8 hex>` hoặc nhận lại từ header `x-request-id`, và được trả về client qua header cùng tên.
 - **Evidence PII redaction**: [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 2. Ví dụ `student@vinuni.edu.vn` → `[REDACTED_EMAIL]`, `0987654321` → `[REDACTED_PHONE_VN]`, `4111 1111 1111 1111` → `[REDACTED_CREDIT_CARD]`. `scrub_event` chạy trong chuỗi processor của structlog **trước** khi JSON được render và ghi xuống file, nên dữ liệu gốc không bao giờ chạm đĩa.
 - **Evidence trace waterfall**: ảnh [`trace_waterfall.png`](evidence/trace_waterfall.png), số liệu tương ứng trong [`traces.md`](evidence/traces.md) mục "Trace waterfall" — trace `053fbbc125f8a22af4573b797b297c13`.
 
@@ -193,11 +193,13 @@ Báo cáo điều tra đầy đủ, sinh tự động từ log: [`investigation.
 
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
-| Người 1 — Le Minh Nguyen | Middleware correlation ID, bind metadata request, exception handler, JSON log | `21c0623` finish task 1 cp 1 | Context phải được clear và bind trước dòng log đầu tiên thì mọi log sau mới dùng chung được |
-| Người 2 — HungBil | PII redaction, regex phone VN, scrubber trong processor chain | `7a57bfb` fix: detect and redact Vietnamese phone PII | Scrub phải nằm trước bước render JSON, nếu không dữ liệu gốc đã kịp chạm đĩa |
-| Người 3 — HoangVuongBui | Dashboard contract 6 panel, validator, đo `error_rate_pct` | `f1a02e5`, `0319cfe` | Mỗi panel cần event/field/aggregation/unit/threshold rõ ràng thì mới kiểm chứng được |
-| Người 4 — ChiQuang | SLO, 3 alert rule symptom-based, runbook | `2dd55c6`, `3110b64` | Severity phải suy ra từ ảnh hưởng người dùng, và alert cần duration để tránh alert fatigue |
-| **Người 5 — thdatt** | **QA & Chief Investigator** (chi tiết bên dưới) | nhánh `feat/task5-qa-investigator` | Xem phần dưới |
+| Người 1 — Nguyễn Lê Minh | Correlation ID (middleware, `clear_contextvars` + bind + header `x-request-id`/`x-response-time-ms`), JSON log sạch PII (`scrub_event` trong processor chain), global exception handler (`unhandled_exception` kèm correlation_id), gắn metadata request (`user_id_hash`, `session_id`, `feature`, `model`, `env`) | `21c0623`, `77ec248`, `2e0216f` (`app/middleware.py`, `app/main.py`, `app/logging_config.py`) | Thứ tự processor structlog quyết định dữ liệu được scrub trước khi JSON render; `merge_contextvars` tự gắn context vào mọi log trong request; phải `clear_contextvars()` trước khi bind để tránh rò rỉ correlation ID giữa các request; không log `user_id` thô mà luôn qua `hash_user_id`. |
+| Người 2 — Đặng Tiến Thành | PII scrubbing toàn bộ log context, regex email/phone VN/CCCD/thẻ, kiểm chứng log không lộ PII | `92a171c` CP1: scrub PII across full log context (`app/pii.py`, `app/logging_config.py`) | Scrub phải nằm trước bước render JSON, nếu không dữ liệu gốc đã kịp chạm đĩa |
+| Người 3 — Bùi Hoàng Vương | Dashboard contract 6 panel, `validate_dashboard.py`, đo `error_rate_pct`, ảnh dashboard | `0319cfe`, `7d852f1` (`config/dashboard.yaml`, `scripts/validate_dashboard.py`, evidence dashboard) | Mỗi panel cần event/field/aggregation/unit/threshold rõ ràng thì mới kiểm chứng được |
+| Người 4 — Nguyễn Chí Quang | SLO, 3 alert rule symptom-based, runbook | `2dd55c6`, `3110b64` (`config/slo.yaml`, `config/alert_rules.yaml`, `docs/alerts.md`) | Severity phải suy ra từ ảnh hưởng người dùng, và alert cần duration để tránh alert fatigue |
+| **Người 5 — Ngô Thành Đạt** | **QA & Chief Investigator**: tracing sub-component, prompt versioning, challenge, report (chi tiết bên dưới) | `9269326` (code + test), `6fabf11`, `116b65b`, `3428e31` (evidence + report), `26eb11c`, `dda1778` | Xem phần dưới |
+
+Các commit `b95464c`, `f1a02e5`, `7a57bfb`, `cd84f4f` của `HungBil` là phần starter và bản release challenge do chủ lab tạo, không tính vào đóng góp của thành viên nào.
 
 ### Chi tiết phần việc của Người 5
 
