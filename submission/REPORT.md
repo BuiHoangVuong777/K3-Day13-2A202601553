@@ -19,7 +19,7 @@
 ## 2. Kết quả kỹ thuật
 
 - Điểm `validate_logs.py`: **100/100** (851 record, 278 correlation ID duy nhất, 0 PII leak) — [`validate_logs_final.txt`](evidence/validate_logs_final.txt); baseline đầu buổi ở [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt)
-- Tổng số traces: **150 trace** trên Langfuse Cloud; 45 trace gần nhất được xuất kèm metadata trong [`traces.md`](evidence/traces.md) / [`traces.json`](evidence/traces.json)
+- Tổng số traces: **150 trace** trên Langfuse Cloud ([`traces_list.png`](evidence/traces_list.png)); 45 trace gần nhất được xuất kèm metadata trong [`traces.md`](evidence/traces.md) / [`traces.json`](evidence/traces.json)
 - Số PII leak còn lại: **0** (email, số điện thoại VN, CCCD, số thẻ đều bị che trước khi ghi log) — [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md)
 - Link/đường dẫn dashboard: [`dashboard_overview.png`](evidence/dashboard_overview.png), [`dashboard_incident.png`](evidence/dashboard_incident.png); contract tại [`config/dashboard.yaml`](../config/dashboard.yaml)
 
@@ -27,7 +27,7 @@
 
 - **Evidence correlation ID**: [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 1. Mỗi request sinh 5 dòng log ở 2 service (`api` và `agent`) mang cùng `correlation_id`, cùng `user_id_hash`, `session_id`, `feature`, `model`, `env`. Correlation ID do middleware sinh theo dạng `req-<8 hex>` hoặc nhận lại từ header `x-request-id`, và được trả về client qua header cùng tên.
 - **Evidence PII redaction**: [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 2. Ví dụ `student@vinuni.edu.vn` → `[REDACTED_EMAIL]`, `0987654321` → `[REDACTED_PHONE_VN]`, `4111 1111 1111 1111` → `[REDACTED_CREDIT_CARD]`. `scrub_event` chạy trong chuỗi processor của structlog **trước** khi JSON được render và ghi xuống file, nên dữ liệu gốc không bao giờ chạm đĩa.
-- **Evidence trace waterfall**: [`traces.md`](evidence/traces.md) mục "Trace waterfall" — trace `053fbbc125f8a22af4573b797b297c13`.
+- **Evidence trace waterfall**: ảnh [`trace_waterfall.png`](evidence/trace_waterfall.png), số liệu tương ứng trong [`traces.md`](evidence/traces.md) mục "Trace waterfall" — trace `053fbbc125f8a22af4573b797b297c13`.
 
 | Span | Kiểu | Thời lượng |
 |---|---|---|
@@ -35,6 +35,8 @@
 | `rag-retrieval` | span | 2507 ms |
 | `prompt-resolve` | span | 0 ms |
 | `llm-generate` | span | 151 ms |
+
+  Ảnh này cũng là bằng chứng gọn nhất cho cả chuỗi ba tầng: waterfall chỉ ra span chậm, tag `req-46f915b6` là correlation ID trong log, metadata mang `slowest_span`, `retrieval_ms`, `llm_ms`.
 
 - **Giải thích một span đáng chú ý**: `rag-retrieval` là span bọc `app/mock_rag.py::retrieve()`. Ở trạng thái bình thường span này gần 0 ms vì corpus nằm trong bộ nhớ; trong incident nó chiếm 2507/2665 ms — tức **94%** thời gian của cả request. Chính span này biến "API chậm" thành một câu trả lời cụ thể: chậm ở tầng retrieval, không phải ở model. Metadata của span mang theo `correlation_id`, `doc_count` và `duration_ms`, nên từ một span có thể quay ngược về đúng dòng log.
 
@@ -49,6 +51,8 @@ Trước khi làm phần này, log và trace là hai thế giới tách rời: l
 ## 4. Prompt versioning
 
 Đầy đủ trong [`prompt_versions.md`](evidence/prompt_versions.md) / [`prompt_versions.json`](evidence/prompt_versions.json), log chạy trong [`prompt_versions_run.txt`](evidence/prompt_versions_run.txt). Tự động hoá bằng [`scripts/qa_prompt_versions.py`](../scripts/qa_prompt_versions.py).
+
+Ảnh danh sách hai version trên Langfuse: [`prompt_versions.png`](evidence/prompt_versions.png).
 
 - Prompt name: `day13-chat` (type `text`, giữ nguyên 3 biến `{{feature}}`, `{{docs}}`, `{{message}}`)
 - Version/label baseline: **v1**, labels `baseline` + `production`
@@ -70,7 +74,14 @@ Trước khi làm phần này, log và trace là hai thế giới tách rời: l
 | Sau khi promote | `baseline` | `candidate`, `latest`, **`production`** |
 | Sau khi rollback | `baseline`, **`production`** | `candidate`, `latest` |
 
-Hai dòng cuối là bằng chứng rollback: cùng một label `production`, cùng một input, nhưng version phục vụ đổi từ v2 về v1 mà không cần sửa code — chỉ đổi label trên Langfuse rồi khởi động lại app. Mỗi trace được script kiểm tra lại bằng API (`ingested: true`) nên không có trace nào chỉ tồn tại trong log.
+Hai ảnh chụp metadata của hai trace cùng label `production` là bằng chứng trực quan của thao tác rollback:
+
+| Ảnh | Trace | `prompt_label` | `prompt_version` |
+|---|---|---|---|
+| [`prompt_rollback_v2.png`](evidence/prompt_rollback_v2.png) | `57e3c36ad37f695058954ae3fb8715b3` | `production` | **2** |
+| [`prompt_rollback_v1.png`](evidence/prompt_rollback_v1.png) | `da15ceb6a0802f9255f1116b4ea7b1e6` | `production` | **1** |
+
+Hai dòng cuối của bảng label ở trên là bằng chứng rollback: cùng một label `production`, cùng một input, nhưng version phục vụ đổi từ v2 về v1 mà không cần sửa code — chỉ đổi label trên Langfuse rồi khởi động lại app. Mỗi trace được script kiểm tra lại bằng API (`ingested: true`) nên không có trace nào chỉ tồn tại trong log.
 
 Version prompt còn được ghi xuống log qua event `prompt_resolved` (`prompt_name`, `prompt_label`, `prompt_version`, `prompt_source`), nên truy được request nào đã dùng prompt nào ngay trong `data/logs.jsonl`. Khi Langfuse không khả dụng, `prompt_source` chuyển thành `local` hoặc `local-fallback` thay vì giả vờ đã lấy được prompt managed.
 
@@ -199,6 +210,7 @@ Báo cáo điều tra đầy đủ, sinh tự động từ log: [`investigation.
 | [`scripts/qa_prompt_versions.py`](../scripts/qa_prompt_versions.py) | Tự động hoá toàn bộ 6 bước prompt versioning + verify trace đã lên Langfuse |
 | [`scripts/investigate.py`](../scripts/investigate.py) | Dựng lại dòng thời gian incident từ log, so sánh 3 cửa sổ, quy trách nhiệm latency theo span, in chuỗi bằng chứng |
 | [`scripts/qa_export_traces.py`](../scripts/qa_export_traces.py) | Xuất danh sách trace + waterfall từ Langfuse API ra evidence kiểm chứng được |
+| [`scripts/qa_check_submission.py`](../scripts/qa_check_submission.py) | Kiểm tra trước khi nộp: link evidence còn sống, đủ mục theo `SUBMISSION.md`, report không bỏ trống, Git không lộ secret |
 | [`scripts/load_test.py`](../scripts/load_test.py), [`scripts/inject_incident.py`](../scripts/inject_incident.py) | Cho phép đổi base URL qua `DAY13_BASE_URL` (mặc định vẫn là cổng 8000 như tài liệu) |
 | [`tests/test_agent_span_instrumentation.py`](../tests/test_agent_span_instrumentation.py) | 4 test cho instrumentation: thứ tự span, span lỗi khi retrieval hỏng, log nối correlation ID ↔ trace ID, tag correlation ID |
 
@@ -213,18 +225,18 @@ Báo cáo điều tra đầy đủ, sinh tự động từ log: [`investigation.
 
 ### Danh mục evidence
 
-| Yêu cầu | File |
-|---|---|
-| Kết quả `validate_logs.py` | [`validate_logs_final.txt`](evidence/validate_logs_final.txt), [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt) |
-| Danh sách ≥ 10 traces | [`traces.md`](evidence/traces.md), [`traces.json`](evidence/traces.json) (45 trace) |
-| Một trace waterfall | [`traces.md`](evidence/traces.md) mục "Trace waterfall" |
-| Hai prompt version + trace đúng version/label | [`prompt_versions.md`](evidence/prompt_versions.md) |
-| Bằng chứng đổi label / rollback | [`prompt_versions.md`](evidence/prompt_versions.md), [`prompt_versions_run.txt`](evidence/prompt_versions_run.txt) |
-| Log có correlation ID | [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 1 |
-| PII đã redact | [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 2 |
-| Kết quả `validate_dashboard.py` | [`validate_dashboard.txt`](evidence/validate_dashboard.txt) |
-| Dashboard 6 nhóm chỉ số | [`dashboard_overview.png`](evidence/dashboard_overview.png), [`dashboard_incident.png`](evidence/dashboard_incident.png) |
-| Điều tra challenge | [`investigation.md`](evidence/investigation.md), [`challenge_run.txt`](evidence/challenge_run.txt), [`challenge_after_fix.txt`](evidence/challenge_after_fix.txt) |
+| Yêu cầu | Ảnh | File kiểm chứng được |
+|---|---|---|
+| Kết quả `validate_logs.py` | — | [`validate_logs_final.txt`](evidence/validate_logs_final.txt), [`validate_logs_baseline.txt`](evidence/validate_logs_baseline.txt) |
+| Danh sách ≥ 10 traces | [`traces_list.png`](evidence/traces_list.png) | [`traces.md`](evidence/traces.md), [`traces.json`](evidence/traces.json) (45 trace) |
+| Một trace waterfall | [`trace_waterfall.png`](evidence/trace_waterfall.png) | [`traces.md`](evidence/traces.md) mục "Trace waterfall" |
+| Hai prompt version + trace đúng version/label | [`prompt_versions.png`](evidence/prompt_versions.png) | [`prompt_versions.md`](evidence/prompt_versions.md) |
+| Bằng chứng đổi label / rollback | [`prompt_rollback_v2.png`](evidence/prompt_rollback_v2.png), [`prompt_rollback_v1.png`](evidence/prompt_rollback_v1.png) | [`prompt_versions.md`](evidence/prompt_versions.md), [`prompt_versions_run.txt`](evidence/prompt_versions_run.txt) |
+| Log có correlation ID | — | [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 1 |
+| PII đã redact | — | [`log_correlation_and_pii.md`](evidence/log_correlation_and_pii.md) mục 2 |
+| Kết quả `validate_dashboard.py` | — | [`validate_dashboard.txt`](evidence/validate_dashboard.txt) |
+| Dashboard 6 nhóm chỉ số | [`dashboard_overview.png`](evidence/dashboard_overview.png), [`dashboard_incident.png`](evidence/dashboard_incident.png) | [`config/dashboard.yaml`](../config/dashboard.yaml) |
+| Điều tra challenge | [`trace_waterfall.png`](evidence/trace_waterfall.png) | [`investigation.md`](evidence/investigation.md), [`challenge_run.txt`](evidence/challenge_run.txt), [`challenge_after_fix.txt`](evidence/challenge_after_fix.txt) |
 | Snapshot `/metrics` theo 3 pha (bổ sung) | [`metrics_before_challenge.json`](evidence/metrics_before_challenge.json), [`metrics_during_challenge.json`](evidence/metrics_during_challenge.json), [`metrics_after_fix.json`](evidence/metrics_after_fix.json) |
 
 Challenge được chạy hai lần trong buổi (`05:40:09Z–05:41:15Z` và `07:22:53Z–07:25:44Z`), cùng cho một kết luận. Báo cáo này dùng lần chạy thứ hai vì có đủ ba cửa sổ trước/trong/sau. Evidence của lần chạy đầu vẫn được giữ lại để đối chiếu: [`challenge_recovery.txt`](evidence/challenge_recovery.txt), [`investigation.json`](evidence/investigation.json), [`log_evidence.md`](evidence/log_evidence.md), [`traces_inventory.md`](evidence/traces_inventory.md) — sinh bởi [`scripts/qa_investigate.py`](../scripts/qa_investigate.py) và [`scripts/qa_trace_inventory.py`](../scripts/qa_trace_inventory.py).
@@ -241,4 +253,5 @@ python scripts/inject_incident.py --disable
 python scripts/investigate.py                   # sinh submission/evidence/investigation.md
 python scripts/qa_export_traces.py              # sinh submission/evidence/traces.md
 python -m pytest -q
+python scripts/qa_check_submission.py           # kiểm tra bài nộp đã đủ evidence chưa
 ```
