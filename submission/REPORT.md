@@ -4,7 +4,8 @@
 
 - Tên nhóm: K3 — Day 13 Observability (`K3-Day13-2A202601553`)
 - Repository URL: https://github.com/BuiHoangVuong777/K3-Day13-2A202601553
-- Commit SHA cuối: xem mục 7 (nhánh `feat/task5-qa-investigator`)
+- Commit SHA của phần việc Người 5: `76ebb7b` trên nhánh `feat/task5-qa-investigator`
+- Commit SHA cuối: lấy bằng `git rev-parse HEAD` sau khi push (SHA này nộp trên Codelabs)
 - Thành viên và vai trò:
 
 | Người | Vai trò | Git identity |
