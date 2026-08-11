@@ -88,7 +88,7 @@ Version prompt còn được ghi xuống log qua event `prompt_resolved` (`promp
 ## 5. Dashboard, SLO và alerts
 
 - Kết quả `validate_dashboard.py`: `HỢP LỆ: 6/6 panel có trong dashboard contract.`
-- Evidence dashboard: [`submission/evidence/dashboard_overview.png`](evidence/dashboard_overview.png) (toàn bộ 6 panel, đơn vị, threshold, time range 60 phút, refresh 30s), [`submission/evidence/dashboard_incident.png`](evidence/dashboard_incident.png) (practice incident `rag_slow` + `tool_fail`)
+- Evidence dashboard: [`submission/evidence/dashboard_overview.png`](evidence/dashboard_overview.png) (toàn bộ 6 panel, đơn vị, threshold, time range 60 phút, refresh 30s), [`submission/evidence/dashboard_incident.png`](evidence/dashboard_incident.png) (practice incident `rag_slow` + `tool_fail`). Evidence riêng cho quyết định alert và chuỗi Metrics → Traces → Logs: [`submission/evidence/sre_alert_validation.md`](evidence/sre_alert_validation.md).
 
 ### Nguồn log cho metrics
 
@@ -111,7 +111,7 @@ Ba event trong `data/logs.jsonl` cấp dữ liệu cho toàn bộ 6 panel:
 
 ### SLO / alert đã chọn và ý nghĩa
 
-- **Latency p95 ≤ 3000ms**: phần lớn request phải trả lời trong 3 giây; vi phạm cho thấy pipeline AI/RAG đang chậm bất thường. Trong evidence, practice `rag_slow` đẩy p95/p99 lên ~2650ms — chưa vượt SLO nhưng đã vượt ngưỡng cảnh báo sớm 2000ms của challenge contract.
+- **Latency p95 ≤ 3000ms**: phần lớn request phải trả lời trong 3 giây; vi phạm cho thấy pipeline AI/RAG đang chậm bất thường. Official challenge `rag_slow` đẩy p95 lên 2663 ms và 15/15 request vượt 2000 ms — chưa vượt SLO nhưng đã vượt ngưỡng cảnh báo sớm của challenge contract. Sau khi tắt incident, p95 trở lại 153 ms.
 - **Error rate ≤ 2%**: hệ thống được kỳ vọng hiếm khi lỗi; spike vượt ngưỡng phải kích hoạt điều tra theo chuỗi metrics → traces → logs. Khi bật incident `tool_fail`, error rate đo được là 33.33% (30/90 request) với `error_type=RuntimeError` — vượt xa SLO, đúng như kỳ vọng khi mô phỏng sự cố.
 - **Cost và tokens (total ≤ $2.5, tokens ≤ 50000)**: bảo vệ khỏi chi phí tăng đột biến do prompt sai cấu hình hoặc vòng lặp gọi model không kiểm soát. Baseline hiện tại (~$0.12, ~9.6k tokens cho 90 request) còn cách xa ngưỡng, cho thấy dư địa an toàn ở mức traffic thử nghiệm.
 - **Quality score ≥ 0.75**: chất lượng câu trả lời AI phải duy trì trên mức chấp nhận được; điểm giảm có thể báo hiệu vấn đề ở model, dữ liệu retrieval hoặc prompt. Mean đo được là 0.88, đạt SLO.
@@ -132,7 +132,7 @@ Ba alert symptom-based nằm tại [`config/alert_rules.yaml`](../config/alert_r
 
 Severity phản ánh mức độ ảnh hưởng: request lỗi là Critical vì người dùng không nhận được kết quả; latency cao là High vì dịch vụ vẫn trả response nhưng trải nghiệm suy giảm; cost là Warning vì chưa gây lỗi trực tiếp nhưng đe dọa ngân sách.
 
-Dashboard hiển thị cửa sổ 60 phút, alert yêu cầu điều kiện duy trì 5 phút để hạn chế cảnh báo do spike ngắn, còn SLO được đánh giá trên cửa sổ 28 ngày. Practice hiện mới chứng minh metric đã vượt threshold, chưa chứng minh điều kiện duy trì đủ 5 phút; phần này sẽ được xác nhận trong runtime test cuối. Khi alert kích hoạt, runbook đi theo luồng: (1) xác định triệu chứng và khoảng thời gian trên metrics, (2) mở trace bất thường để khoanh vùng span, (3) dùng correlation ID tìm log liên quan, (4) áp dụng mitigation và chỉ đóng alert sau khi chỉ số phục hồi ổn định.
+Dashboard hiển thị cửa sổ 60 phút, alert yêu cầu điều kiện duy trì 5 phút để hạn chế cảnh báo do spike ngắn, còn SLO được đánh giá trên cửa sổ 28 ngày. Official challenge kéo dài 171 giây nên evidence chỉ chứng minh điều kiện ngưỡng, không tuyên bố alert đã firing đủ 5 phút. Chuỗi điều tra đã được kiểm chứng bằng metric p95 2663 ms → trace `053fbbc125f8a22af4573b797b297c13` → correlation ID `req-46f915b6` → span `rag-retrieval` 2507 ms; sau mitigation, p95 phục hồi về 153 ms. Khi alert kích hoạt, runbook đi theo luồng: (1) xác định triệu chứng và khoảng thời gian trên metrics, (2) mở trace bất thường để khoanh vùng span, (3) dùng correlation ID tìm log liên quan, (4) áp dụng mitigation và chỉ đóng alert sau khi chỉ số phục hồi ổn định.
 
 ## 6. Điều tra challenge
 
@@ -196,7 +196,7 @@ Báo cáo điều tra đầy đủ, sinh tự động từ log: [`investigation.
 | Người 1 — Nguyễn Lê Minh | Correlation ID (middleware, `clear_contextvars` + bind + header `x-request-id`/`x-response-time-ms`), JSON log sạch PII (`scrub_event` trong processor chain), global exception handler (`unhandled_exception` kèm correlation_id), gắn metadata request (`user_id_hash`, `session_id`, `feature`, `model`, `env`) | `21c0623`, `77ec248`, `2e0216f` (`app/middleware.py`, `app/main.py`, `app/logging_config.py`) | Thứ tự processor structlog quyết định dữ liệu được scrub trước khi JSON render; `merge_contextvars` tự gắn context vào mọi log trong request; phải `clear_contextvars()` trước khi bind để tránh rò rỉ correlation ID giữa các request; không log `user_id` thô mà luôn qua `hash_user_id`. |
 | Người 2 — Đặng Tiến Thành | PII scrubbing toàn bộ log context, regex email/phone VN/CCCD/thẻ, kiểm chứng log không lộ PII | `92a171c` CP1: scrub PII across full log context (`app/pii.py`, `app/logging_config.py`) | Scrub phải nằm trước bước render JSON, nếu không dữ liệu gốc đã kịp chạm đĩa |
 | Người 3 — Bùi Hoàng Vương | Dashboard contract 6 panel, `validate_dashboard.py`, đo `error_rate_pct`, ảnh dashboard | `0319cfe`, `7d852f1` (`config/dashboard.yaml`, `scripts/validate_dashboard.py`, evidence dashboard) | Mỗi panel cần event/field/aggregation/unit/threshold rõ ràng thì mới kiểm chứng được |
-| Người 4 — Nguyễn Chí Quang | SLO, 3 alert rule symptom-based, runbook | `2dd55c6`, `3110b64` (`config/slo.yaml`, `config/alert_rules.yaml`, `docs/alerts.md`) | Severity phải suy ra từ ảnh hưởng người dùng, và alert cần duration để tránh alert fatigue |
+| Người 4 — Nguyễn Chí Quang | Thiết kế 5 SLI/SLO, 3 alert symptom-based, severity/duration, runbook Metrics → Traces → Logs và kiểm chứng threshold bằng official challenge | `2dd55c6`, `3110b64`; PR từ nhánh `feature/slo-alerts-runbook` | Alert phải dựa trên ảnh hưởng người dùng; evidence phải tách rõ “vượt threshold” với “đủ duration để firing”, đồng thời cần trace ID và correlation ID để chứng minh root cause. |
 | **Người 5 — Ngô Thành Đạt** | **QA & Chief Investigator**: tracing sub-component, prompt versioning, challenge, report (chi tiết bên dưới) | `9269326` (code + test), `6fabf11`, `116b65b`, `3428e31` (evidence + report), `26eb11c`, `dda1778` | Xem phần dưới |
 
 Các commit `b95464c`, `f1a02e5`, `7a57bfb`, `cd84f4f` của `HungBil` là phần starter và bản release challenge do chủ lab tạo, không tính vào đóng góp của thành viên nào.

@@ -3,7 +3,7 @@
 Mỗi alert phải dựa trên triệu chứng người dùng hoặc SLO, không dựa trực tiếp vào tên implementation nội bộ.
 Các SLO threshold đồng bộ với `config/slo.yaml` và `config/dashboard.yaml`. Alert latency dùng ngưỡng cảnh báo sớm 2000 ms theo challenge contract để nhóm phản ứng trước khi vi phạm SLO 3000 ms.
 
-Các alert yêu cầu điều kiện duy trì 5 phút để tránh cảnh báo do một vài request bất thường hoặc spike ngắn, qua đó giảm false positive và alert fatigue. Practice hiện chứng minh metric đã vượt threshold; nhóm sẽ xác nhận đầy đủ duration 5 phút trong runtime test cuối.
+Các alert yêu cầu điều kiện duy trì 5 phút để tránh cảnh báo do một vài request bất thường hoặc spike ngắn, qua đó giảm false positive và alert fatigue. Official challenge kéo dài 171 giây đã chứng minh metric vượt threshold nhưng chưa đủ 300 giây để khẳng định alert thực sự chuyển sang trạng thái firing. Nhóm giữ giới hạn này minh bạch thay vì suy diễn evidence; chi tiết nằm tại [`submission/evidence/sre_alert_validation.md`](../submission/evidence/sre_alert_validation.md).
 
 ## Alert 1
 
@@ -12,7 +12,8 @@ Các alert yêu cầu điều kiện duy trì 5 phút để tránh cảnh báo d
 - Lý do severity: Hệ thống vẫn có thể trả response nhưng độ trễ cao làm trải nghiệm người dùng suy giảm đáng kể, nên cần xử lý sớm nhưng chưa ở mức mất dịch vụ hoàn toàn.
 - SLI/SLO liên quan: Latency P95 không vượt quá 3000 ms.
 - Điều kiện và thời gian duy trì: Latency P95 lớn hơn 2000 ms liên tục trong 5 phút.
-- Cơ sở chọn ngưỡng: Baseline khoảng 150 ms; practice `rag_slow` đẩy P95 lên khoảng 2650 ms. Ngưỡng 2000 ms phát hiện sớm suy giảm rõ rệt trước khi SLO 3000 ms bị vi phạm.
+- Cơ sở chọn ngưỡng: Sau recovery, P95 ổn định khoảng 153 ms; official challenge `rag_slow` đẩy P95 lên 2663 ms và 15/15 request vượt 2000 ms. Ngưỡng 2000 ms phát hiện sớm suy giảm rõ rệt trước khi SLO 3000 ms bị vi phạm.
+- Kiểm chứng runtime: Trace `053fbbc125f8a22af4573b797b297c13` gắn với correlation ID `req-46f915b6` có tổng latency 2663 ms; span `rag-retrieval` chiếm 2507 ms, trong khi `llm-generate` chỉ 150 ms. Error rate vẫn là 0%, vì vậy severity High phù hợp hơn Critical cho sự cố này.
 - Ảnh hưởng tới người dùng: Người dùng phải chờ lâu, có thể gửi lại request hoặc rời khỏi luồng đang sử dụng.
 - Ba bước kiểm tra đầu tiên:
   1. Mở panel Latency, xác định thời điểm bắt đầu tăng và feature bị ảnh hưởng.
@@ -30,6 +31,7 @@ Các alert yêu cầu điều kiện duy trì 5 phút để tránh cảnh báo d
 - SLI/SLO liên quan: Error rate không vượt quá 2%.
 - Điều kiện và thời gian duy trì: Error rate lớn hơn 2% liên tục trong 5 phút.
 - Cơ sở chọn ngưỡng: Practice `tool_fail` tạo 30 request lỗi trên 90 request, tương ứng 33.33%, vượt xa ngưỡng 2% và thể hiện ảnh hưởng rõ tới người dùng.
+- Kiểm chứng runtime: Panel Errors trong [`dashboard_incident.png`](../submission/evidence/dashboard_incident.png) thể hiện error rate 33.33% với `RuntimeError`; đây là practice evidence, không phải incident chính thức `rag_slow`.
 - Ảnh hưởng tới người dùng: Một phần request thất bại và người dùng không nhận được câu trả lời hợp lệ.
 - Ba bước kiểm tra đầu tiên:
   1. Mở panel Errors, xác định `error_type`, thời điểm và feature có số lỗi tăng mạnh nhất.
@@ -47,6 +49,7 @@ Các alert yêu cầu điều kiện duy trì 5 phút để tránh cảnh báo d
 - SLI/SLO liên quan: Tổng chi phí trong cửa sổ 60 phút không vượt quá 2.5 USD.
 - Điều kiện và thời gian duy trì: Tổng cost của 60 phút gần nhất lớn hơn 2.5 USD trong 5 phút.
 - Cơ sở chọn ngưỡng: Baseline khoảng 0.1212 USD cho 90 request, còn đủ khoảng an toàn so với ngân sách 2.5 USD nhưng vẫn phát hiện được cost spike lớn.
+- Trạng thái kiểm chứng: Nhóm mới kiểm chứng baseline và mapping `response_sent.cost_usd`; chưa kích hoạt `cost_spike` trong official challenge nên không tuyên bố alert này đã firing.
 - Ảnh hưởng tới người dùng: Chưa nhất thiết gây lỗi trực tiếp, nhưng hệ thống có nguy cơ vượt ngân sách và phải giới hạn dịch vụ.
 - Ba bước kiểm tra đầu tiên:
   1. So sánh Cost với Traffic để xác định chi phí tăng do số request hay do chi phí trên mỗi request.

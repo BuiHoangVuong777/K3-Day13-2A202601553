@@ -13,6 +13,10 @@ slis:
     objective: 2.5
     target: 100.0
     note: "Baseline khoảng 0.1212 USD cho 90 request; 2.5 USD là hard budget nên target 100% cửa sổ 60 phút phải đạt"
+  tokens_total_60m:
+    objective: 50000
+    target: 100.0
+    note: "Baseline khoảng 9.6 nghìn token cho 90 request; ngưỡng 50000 token trong 60 phút đồng bộ với dashboard và dùng để phát hiện prompt hoặc vòng lặp sinh token bất thường"
   quality_score_avg:
     objective: 0.75
     target: 95.0
