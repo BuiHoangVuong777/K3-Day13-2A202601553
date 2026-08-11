@@ -7,7 +7,7 @@ from typing import Any
 
 PII_PATTERNS: dict[str, str] = {
     "email": r"[\w\.-]+@[\w\.-]+\.\w+",
-    "phone_vn": r"(?<!\d)(?:\+84|0)(?:[ .-]?\d){9}(?!\d)",
+    "phone_vn": r"(?<![A-Za-z0-9_])(?:\+84|0)(?:[ .-]?\d){9}(?![A-Za-z0-9_])",
     "cccd": r"\b\d{12}\b",
     "credit_card": r"\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b",
 

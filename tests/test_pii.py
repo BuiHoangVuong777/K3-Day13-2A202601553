@@ -131,3 +131,19 @@ def test_scrub_nested_list() -> None:
 
     assert "user1@example.com" not in rendered
     assert "0901234567" not in rendered
+
+def test_phone_regex_does_not_corrupt_trace_id() -> None:
+    trace_id = "0123456789fc941b1234567890abcdef"
+
+    out = scrub_text(trace_id)
+
+    assert out == trace_id
+    assert "[REDACTED_PHONE_VN]" not in out
+
+def test_real_phone_is_redacted() -> None:
+    raw = "My phone is 0901234567"
+
+    out = scrub_text(raw)
+
+    assert "0901234567" not in out
+    assert "[REDACTED_PHONE_VN]" in out
