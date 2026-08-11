@@ -1,0 +1,26 @@
+CHALLENGE_WINDOW_START 2026-08-11T07:22:52.875531+00:00
+=== inject_incident (đọc config/challenge.json) ===
+200 {'ok': True, 'incidents': {'rag_slow': True, 'tool_fail': False, 'cost_spike': False}}
+=== load_test --challenge --concurrency 5 ===
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-52b66bf8 | refund | 10653.6ms
+[200] req-e5a9cdad | refund | 10655.3ms
+[200] req-46f915b6 | refund | 13312.1ms
+[200] req-6df2a8fe | refund | 13312.1ms
+[200] req-0749c9b2 | refund | 13314.0ms
+CHALLENGE_WINDOW_END 2026-08-11T07:23:07.249375+00:00
+=== challenge repeat round 2 ===
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-c1dc4744 | refund | 8000.6ms
+[200] req-35c8171b | refund | 10654.9ms
+[200] req-b73bbf84 | refund | 13312.1ms
+[200] req-0f4fccef | refund | 13311.9ms
+[200] req-2ac5875a | refund | 13314.0ms
+=== challenge repeat round 3 ===
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-7272286f | refund | 13285.3ms
+[200] req-40f08a79 | refund | 13285.3ms
+[200] req-630196c3 | refund | 13284.5ms
+[200] req-9cb3b572 | refund | 13285.9ms
+[200] req-b1b19832 | refund | 13285.5ms
+INCIDENT_WINDOW_END 2026-08-11T07:24:54.824366+00:00

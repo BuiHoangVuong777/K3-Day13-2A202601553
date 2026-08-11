@@ -1,0 +1,22 @@
+=== healthy run 1 ===
+[200] req-2c58fb21 | qa | 1799.7ms
+[200] req-581af8f3 | qa | 157.8ms
+[200] req-d6d62991 | summary | 156.7ms
+[200] req-05b72036 | qa | 156.2ms
+[200] req-0c1478c4 | qa | 156.0ms
+[200] req-2fedaf22 | summary | 156.1ms
+[200] req-b2bec80d | qa | 155.9ms
+[200] req-97c25573 | qa | 156.2ms
+[200] req-39a9d031 | qa | 156.0ms
+[200] req-a9191f68 | qa | 156.0ms
+=== healthy run 2 (concurrency 5) ===
+[200] req-97194e64 | qa | 625.2ms
+[200] req-3a199f89 | qa | 624.6ms
+[200] req-d6ab7960 | qa | 625.6ms
+[200] req-776476c0 | summary | 626.9ms
+[200] req-d2d1d01b | qa | 783.2ms
+[200] req-56001e28 | summary | 622.4ms
+[200] req-2a491626 | qa | 778.3ms
+[200] req-3e443036 | qa | 777.9ms
+[200] req-b0fc05d0 | qa | 777.5ms
+[200] req-5d274d4e | qa | 777.1ms

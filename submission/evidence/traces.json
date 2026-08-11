@@ -1,0 +1,1153 @@
+{
+  "traces": [
+    {
+      "id": "da15ceb6a0802f9255f1116b4ea7b1e6",
+      "timestamp": "2026-08-11T08:00:22.026Z",
+      "sessionId": "prompt-production-rollback",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-prompt-production-rollback"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-prompt-production-rollback",
+        "retrieval_ms": 0,
+        "prompt_ms": 280,
+        "llm_ms": 155,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "57e3c36ad37f695058954ae3fb8715b3",
+      "timestamp": "2026-08-11T08:00:05.084Z",
+      "sessionId": "prompt-production-v2",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-prompt-production-v2"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 2,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-prompt-production-v2",
+        "retrieval_ms": 0,
+        "prompt_ms": 285,
+        "llm_ms": 150,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "c72a35ada92c8ad1b57f90cd75ec74fb",
+      "timestamp": "2026-08-11T07:59:47.431Z",
+      "sessionId": "prompt-candidate",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-prompt-candidate"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "candidate",
+        "prompt_version": 2,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-prompt-candidate",
+        "retrieval_ms": 0,
+        "prompt_ms": 850,
+        "llm_ms": 150,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "8a812c62cf3a4fcc6227b4fb8abd8e5b",
+      "timestamp": "2026-08-11T07:59:33.972Z",
+      "sessionId": "prompt-baseline",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-prompt-baseline"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "baseline",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-prompt-baseline",
+        "retrieval_ms": 0,
+        "prompt_ms": 306,
+        "llm_ms": 150,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "ba7680d88211c14828554cbac595b372",
+      "timestamp": "2026-08-11T07:54:59.630Z",
+      "sessionId": "prompt-baseline",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-prompt-baseline"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "baseline",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-prompt-baseline",
+        "retrieval_ms": 0,
+        "prompt_ms": 563,
+        "llm_ms": 150,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "93ba83a84cc6088702a85a39b8a25157",
+      "timestamp": "2026-08-11T07:25:46.640Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-eb38e1b4"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-eb38e1b4",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "6a4a0fea05e1c37b11c6c168df1bc501",
+      "timestamp": "2026-08-11T07:25:46.483Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-67bc0c5c"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-67bc0c5c",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "0437b4edf77225ef6a65f5651e6229fd",
+      "timestamp": "2026-08-11T07:25:46.329Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-1857af40"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-1857af40",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "0fca257aa4fa955cde51181eb7b16c97",
+      "timestamp": "2026-08-11T07:25:46.174Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-a931f17a"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-a931f17a",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "1b1194d55f0471a9decbfe83e20f39a3",
+      "timestamp": "2026-08-11T07:25:46.017Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-0424d6d0"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-0424d6d0",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "06ab52905904f1514e66d722645ae0a7",
+      "timestamp": "2026-08-11T07:25:45.411Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-bb555b1a"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-bb555b1a",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "8626b545f637386941e828721b9f3ce2",
+      "timestamp": "2026-08-11T07:25:45.257Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-a01ed91a"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-a01ed91a",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "1d18ee85947e9b420c9f686324e32f1c",
+      "timestamp": "2026-08-11T07:25:45.101Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-54fe6e83"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-54fe6e83",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "0a42fd42158f6e160e134372d1e318b3",
+      "timestamp": "2026-08-11T07:25:44.946Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-e35c0ce8"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-e35c0ce8",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "5977745d6b573fb53e6ecd9320b54c11",
+      "timestamp": "2026-08-11T07:25:44.791Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-157260a3"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-157260a3",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "fa6301f7151243f98cc361660ec1be9b",
+      "timestamp": "2026-08-11T07:24:52.097Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-630196c3"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-630196c3",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "302174ed6bdfd516503d571f00fdca1e",
+      "timestamp": "2026-08-11T07:24:49.442Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-b1b19832"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-b1b19832",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "c36c0d3a0c480db0198502ff630182bb",
+      "timestamp": "2026-08-11T07:24:46.787Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-9cb3b572"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-9cb3b572",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "5e7c96a7f1eb604a07e38a8c2610b091",
+      "timestamp": "2026-08-11T07:24:44.129Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-40f08a79"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-40f08a79",
+        "retrieval_ms": 2501,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "fbf308fb484aa2fd67e4a276bf472f94",
+      "timestamp": "2026-08-11T07:24:41.474Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-7272286f"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-7272286f",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "c87367c78a38f8736044ac2767a8e2e5",
+      "timestamp": "2026-08-11T07:24:38.363Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-0f4fccef"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-0f4fccef",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "e8e1f97b34f941f78b19723375b2338e",
+      "timestamp": "2026-08-11T07:24:35.707Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-b73bbf84"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-b73bbf84",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "0589adb5130f754d1bf845d05b9c6f2e",
+      "timestamp": "2026-08-11T07:24:33.050Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-2ac5875a"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-2ac5875a",
+        "retrieval_ms": 2501,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "5022e8e1fdf0c43611a242abe6647fe1",
+      "timestamp": "2026-08-11T07:24:30.376Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-35c8171b"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-35c8171b",
+        "retrieval_ms": 2502,
+        "prompt_ms": 0,
+        "llm_ms": 156,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "929e7fa2fddcfb5ca24bd9a3857da0a0",
+      "timestamp": "2026-08-11T07:24:27.716Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-c1dc4744"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-c1dc4744",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "78786a892db31eeeed8c242ed2b85058",
+      "timestamp": "2026-08-11T07:23:04.509Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-0749c9b2"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-0749c9b2",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "237955b707990c019ea7d33b2263aa79",
+      "timestamp": "2026-08-11T07:23:01.850Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-6df2a8fe"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-6df2a8fe",
+        "retrieval_ms": 2501,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "053fbbc125f8a22af4573b797b297c13",
+      "timestamp": "2026-08-11T07:22:59.182Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-46f915b6"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-46f915b6",
+        "retrieval_ms": 2507,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "5a0dbcc517817ef65f27551c053ff2f9",
+      "timestamp": "2026-08-11T07:22:56.523Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-e5a9cdad"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-e5a9cdad",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "f2dbba7e124d1256886fc54a4c6cdc90",
+      "timestamp": "2026-08-11T07:22:53.864Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-52b66bf8"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-52b66bf8",
+        "retrieval_ms": 2500,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "rag-retrieval"
+      }
+    },
+    {
+      "id": "7ea4846133ca0c485c6a1da4907b4d15",
+      "timestamp": "2026-08-11T07:20:53.910Z",
+      "sessionId": "s10",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-45464d76"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "How should alerts be designed?",
+        "correlation_id": "req-45464d76",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "6523935add75f2dda861b5579264e851",
+      "timestamp": "2026-08-11T07:20:53.754Z",
+      "sessionId": "s09",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-90f7a68e"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is the policy for PII and credit card [REDACTED_CREDIT_CARD]?",
+        "correlation_id": "req-90f7a68e",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "870ef23d9b957a992ab87d46e25873dc",
+      "timestamp": "2026-08-11T07:20:53.597Z",
+      "sessionId": "s08",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-cb26d0f3"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "How do I debug tail latency?",
+        "correlation_id": "req-cb26d0f3",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "720d1f06958f48207a9201bdf4fa2fbb",
+      "timestamp": "2026-08-11T07:20:53.441Z",
+      "sessionId": "s07",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-40b1e3ea"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What should not appear in app logs?",
+        "correlation_id": "req-40b1e3ea",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "579cc7011d428c4c0e08b892d945798e",
+      "timestamp": "2026-08-11T07:20:53.286Z",
+      "sessionId": "s06",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "req-9cbb4daf",
+        "summary"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Give me a short summary of the observability workflow",
+        "correlation_id": "req-9cbb4daf",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "1cb8a2186796b2d4078eeb574a9c82c6",
+      "timestamp": "2026-08-11T07:20:53.128Z",
+      "sessionId": "s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-f80ce909"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Here is my phone [REDACTED_PHONE_VN], what should be logged?",
+        "correlation_id": "req-f80ce909",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 151,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "b487adfe7f637bf3fcb676c0712b0e15",
+      "timestamp": "2026-08-11T07:20:52.969Z",
+      "sessionId": "s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-7d268c45"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can I get help with policy and monitoring?",
+        "correlation_id": "req-7d268c45",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "76bb5ab19c4b2499c76d4c7a0bbf92d6",
+      "timestamp": "2026-08-11T07:20:52.812Z",
+      "sessionId": "s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "req-85f40674",
+        "summary"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the monitoring policy for production logging",
+        "correlation_id": "req-85f40674",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "6f379b1de50f959402e26dbb4955ebb5",
+      "timestamp": "2026-08-11T07:20:52.655Z",
+      "sessionId": "s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-0fb69456"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain why metrics traces and logs work together",
+        "correlation_id": "req-0fb69456",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "68eb0557b3f3c2eed81aa16a7cf38d12",
+      "timestamp": "2026-08-11T07:20:50.977Z",
+      "sessionId": "s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "qa",
+        "req-01fcfbca"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy? My email is [REDACTED_EMAIL]",
+        "correlation_id": "req-01fcfbca",
+        "retrieval_ms": 0,
+        "prompt_ms": 339,
+        "llm_ms": 150,
+        "slowest_span": "prompt-resolve"
+      }
+    },
+    {
+      "id": "4bbe017db8062a061f86b25cb659c653",
+      "timestamp": "2026-08-11T05:41:16.792Z",
+      "sessionId": "k3-challenge-s03",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-edc327fd"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Explain the refund window and required evidence.",
+        "correlation_id": "req-edc327fd",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "e7f16aa6024fb5bf8fd8ee7b49d5cbb7",
+      "timestamp": "2026-08-11T05:41:16.623Z",
+      "sessionId": "k3-challenge-s05",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-da9a52b1"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Summarize the refund policy for a support agent.",
+        "correlation_id": "req-da9a52b1",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "781cba0f1f1b6f6ecb97c1936f8b25b0",
+      "timestamp": "2026-08-11T05:41:16.455Z",
+      "sessionId": "k3-challenge-s04",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-dc075591"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "Can a customer request a refund after purchase?",
+        "correlation_id": "req-dc075591",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "4bf3e7aca99d427d52377be059313a50",
+      "timestamp": "2026-08-11T05:41:16.287Z",
+      "sessionId": "k3-challenge-s02",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-cfe1ccd4"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What proof is required for a refund?",
+        "correlation_id": "req-cfe1ccd4",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    },
+    {
+      "id": "62fb13a40df073cbc53346319805cc1b",
+      "timestamp": "2026-08-11T05:41:16.119Z",
+      "sessionId": "k3-challenge-s01",
+      "tags": [
+        "claude-sonnet-4-5",
+        "lab",
+        "refund",
+        "req-7c0f5247"
+      ],
+      "metadata": {
+        "prompt_name": "day13-chat",
+        "prompt_label": "production",
+        "prompt_version": 1,
+        "prompt_source": "langfuse",
+        "doc_count": 1,
+        "query_preview": "What is your refund policy?",
+        "correlation_id": "req-7c0f5247",
+        "retrieval_ms": 0,
+        "prompt_ms": 0,
+        "llm_ms": 150,
+        "slowest_span": "llm-generate"
+      }
+    }
+  ],
+  "waterfall": {
+    "traceId": "053fbbc125f8a22af4573b797b297c13",
+    "observations": [
+      {
+        "name": "run",
+        "type": "GENERATION",
+        "startTime": "2026-08-11T07:22:59.182Z",
+        "endTime": "2026-08-11T07:23:01.847Z",
+        "latencyMs": 2665,
+        "metadata": {
+          "doc_count": 1,
+          "query_preview": "Summarize the refund policy for a support agent.",
+          "prompt_name": "day13-chat",
+          "prompt_label": "production",
+          "prompt_version": 1,
+          "prompt_source": "langfuse",
+          "correlation_id": "req-46f915b6",
+          "retrieval_ms": 2507,
+          "prompt_ms": 0,
+          "llm_ms": 150,
+          "slowest_span": "rag-retrieval"
+        }
+      },
+      {
+        "name": "rag-retrieval",
+        "type": "SPAN",
+        "startTime": "2026-08-11T07:22:59.183Z",
+        "endTime": "2026-08-11T07:23:01.690Z",
+        "latencyMs": 2507,
+        "metadata": {
+          "component": "mock_rag",
+          "correlation_id": "req-46f915b6",
+          "doc_count": 1,
+          "duration_ms": 2507
+        }
+      },
+      {
+        "name": "prompt-resolve",
+        "type": "SPAN",
+        "startTime": "2026-08-11T07:23:01.693Z",
+        "endTime": "2026-08-11T07:23:01.693Z",
+        "latencyMs": 0,
+        "metadata": {
+          "component": "prompt_management",
+          "correlation_id": "req-46f915b6",
+          "prompt_name": "day13-chat",
+          "prompt_label": "production",
+          "prompt_version": 1,
+          "prompt_source": "langfuse",
+          "duration_ms": 0
+        }
+      },
+      {
+        "name": "llm-generate",
+        "type": "SPAN",
+        "startTime": "2026-08-11T07:23:01.695Z",
+        "endTime": "2026-08-11T07:23:01.846Z",
+        "latencyMs": 151,
+        "metadata": {
+          "component": "mock_llm",
+          "correlation_id": "req-46f915b6",
+          "model": "claude-sonnet-4-5",
+          "tokens_in": 50,
+          "tokens_out": 142,
+          "duration_ms": 150
+        }
+      }
+    ]
+  }
+}
