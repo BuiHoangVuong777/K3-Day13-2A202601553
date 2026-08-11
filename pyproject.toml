@@ -1,0 +1,17 @@
+[project]
+name = "k3-day13-2a202601553"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.118.0",
+    "httpx==0.28.1",
+    "langfuse==3.2.1",
+    "pydantic==2.11.4",
+    "pytest==8.3.5",
+    "python-dotenv==1.1.0",
+    "pyyaml==6.0.3",
+    "structlog==25.4.0",
+    "uvicorn[standard]==0.37.0",
+]
