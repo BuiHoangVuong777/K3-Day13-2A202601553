@@ -1,0 +1,17 @@
+AFTER_FIX_WINDOW_START 2026-08-11T07:25:43.956495+00:00
+=== disable incident ===
+200 {'ok': True, 'incidents': {'rag_slow': False, 'tool_fail': False, 'cost_spike': False}}
+=== verification: challenge input sau khi fix ===
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-157260a3 | refund | 469.8ms
+[200] req-e35c0ce8 | refund | 471.3ms
+[200] req-54fe6e83 | refund | 779.6ms
+[200] req-a01ed91a | refund | 781.4ms
+[200] req-bb555b1a | refund | 780.7ms
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-0424d6d0 | refund | 161.5ms
+[200] req-a931f17a | refund | 625.4ms
+[200] req-1857af40 | refund | 782.5ms
+[200] req-67bc0c5c | refund | 784.1ms
+[200] req-eb38e1b4 | refund | 782.6ms
+AFTER_FIX_WINDOW_END 2026-08-11T07:25:46.867448+00:00

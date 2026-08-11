@@ -1,0 +1,23 @@
+[state] trước khi thao tác: {'v1': ['baseline', 'production'], 'v2': ['candidate', 'latest']}
+[app ] sẵn sàng với label=baseline
+[run ] baseline           label=baseline   version=1        source=langfuse       trace=8a812c62cf3a4fcc6227b4fb8abd8e5b
+[app ] đã tắt (label=baseline)
+[app ] sẵn sàng với label=candidate
+[run ] candidate          label=candidate  version=2        source=langfuse       trace=c72a35ada92c8ad1b57f90cd75ec74fb
+[app ] đã tắt (label=candidate)
+[prompt] gán label 'production' -> v2
+[state] sau khi promote:    {'v1': ['baseline'], 'v2': ['candidate', 'latest', 'production']}
+[app ] sẵn sàng với label=production
+[run ] production-v2      label=production version=2        source=langfuse       trace=57e3c36ad37f695058954ae3fb8715b3
+[app ] đã tắt (label=production)
+[prompt] gán label 'production' -> v1
+[state] sau khi rollback:   {'v1': ['baseline', 'production'], 'v2': ['candidate', 'latest']}
+[app ] sẵn sàng với label=production
+[run ] production-rollback label=production version=1        source=langfuse       trace=da15ceb6a0802f9255f1116b4ea7b1e6
+[app ] đã tắt (label=production)
+[check] trace baseline đã lên Langfuse
+[check] trace candidate đã lên Langfuse
+[check] trace production-v2 đã lên Langfuse
+[check] trace production-rollback đã lên Langfuse
+
+Đã ghi evidence vào C:\Users\ADMIN\Desktop\VinUniSchool\Day13\K3-Day13-2A202601553\submission\evidence\prompt_versions.json

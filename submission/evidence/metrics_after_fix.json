@@ -1,0 +1,21 @@
+{
+  "captured_at_utc": "2026-08-11T05:41:17.327866+00:00",
+  "phase": "after_fix_recovered",
+  "incidents": {
+    "rag_slow": false,
+    "tool_fail": false,
+    "cost_spike": false
+  },
+  "metrics": {
+    "traffic": 35,
+    "latency_p50": 152.0,
+    "latency_p95": 2658.0,
+    "latency_p99": 2658.0,
+    "avg_cost_usd": 0.0021,
+    "total_cost_usd": 0.0731,
+    "tokens_in_total": 1712,
+    "tokens_out_total": 4530,
+    "error_breakdown": {},
+    "quality_avg": 0.8714
+  }
+}

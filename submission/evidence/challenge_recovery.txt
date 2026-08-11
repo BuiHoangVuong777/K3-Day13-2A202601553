@@ -1,0 +1,10 @@
+RECOVERY_WINDOW_START_UTC 2026-08-11T05:41:14.177102+00:00
+=== rollback: tắt incident rag_slow ===
+200 {'ok': True, 'incidents': {'rag_slow': False, 'tool_fail': False, 'cost_spike': False}}
+=== chạy lại đúng input challenge để xác nhận hồi phục ===
+Challenge: day13-k3-observability-v1 | Cohort: K3
+[200] req-7c0f5247 | refund | 176.2ms
+[200] req-cfe1ccd4 | refund | 166.7ms
+[200] req-dc075591 | refund | 168.7ms
+[200] req-da9a52b1 | refund | 169.5ms
+[200] req-edc327fd | refund | 165.7ms

@@ -1,0 +1,96 @@
+{
+  "prompt_name": "day13-chat",
+  "probe_message": "What is your refund policy?",
+  "steps": [
+    {
+      "step": "baseline",
+      "env_label": "baseline",
+      "correlation_id": "req-prompt-baseline",
+      "trace_id": "8a812c62cf3a4fcc6227b4fb8abd8e5b",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/8a812c62cf3a4fcc6227b4fb8abd8e5b",
+      "prompt_name": "day13-chat",
+      "prompt_label": "baseline",
+      "prompt_version": "1",
+      "prompt_source": "langfuse",
+      "latency_ms": 1709,
+      "ingested": true,
+      "trace_metadata_version": 1,
+      "trace_metadata_label": "baseline"
+    },
+    {
+      "step": "candidate",
+      "env_label": "candidate",
+      "correlation_id": "req-prompt-candidate",
+      "trace_id": "c72a35ada92c8ad1b57f90cd75ec74fb",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/c72a35ada92c8ad1b57f90cd75ec74fb",
+      "prompt_name": "day13-chat",
+      "prompt_label": "candidate",
+      "prompt_version": "2",
+      "prompt_source": "langfuse",
+      "latency_ms": 2533,
+      "ingested": true,
+      "trace_metadata_version": 2,
+      "trace_metadata_label": "candidate"
+    },
+    {
+      "step": "production-v2",
+      "env_label": "production",
+      "correlation_id": "req-prompt-production-v2",
+      "trace_id": "57e3c36ad37f695058954ae3fb8715b3",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/57e3c36ad37f695058954ae3fb8715b3",
+      "prompt_name": "day13-chat",
+      "prompt_label": "production",
+      "prompt_version": "2",
+      "prompt_source": "langfuse",
+      "latency_ms": 1709,
+      "ingested": true,
+      "trace_metadata_version": 2,
+      "trace_metadata_label": "production"
+    },
+    {
+      "step": "production-rollback",
+      "env_label": "production",
+      "correlation_id": "req-prompt-production-rollback",
+      "trace_id": "da15ceb6a0802f9255f1116b4ea7b1e6",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/da15ceb6a0802f9255f1116b4ea7b1e6",
+      "prompt_name": "day13-chat",
+      "prompt_label": "production",
+      "prompt_version": "1",
+      "prompt_source": "langfuse",
+      "latency_ms": 1556,
+      "ingested": true,
+      "trace_metadata_version": 1,
+      "trace_metadata_label": "production"
+    }
+  ],
+  "labels_before": {
+    "v1": [
+      "baseline",
+      "production"
+    ],
+    "v2": [
+      "candidate",
+      "latest"
+    ]
+  },
+  "labels_after_promote": {
+    "v1": [
+      "baseline"
+    ],
+    "v2": [
+      "candidate",
+      "latest",
+      "production"
+    ]
+  },
+  "labels_after_rollback": {
+    "v1": [
+      "baseline",
+      "production"
+    ],
+    "v2": [
+      "candidate",
+      "latest"
+    ]
+  }
+}

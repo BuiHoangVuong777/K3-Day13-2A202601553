@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -13,7 +14,8 @@ if str(REPO_ROOT) not in sys.path:
 from app.challenge import resolve_incident
 from app.cli import configure_utf8_stdio
 
-BASE_URL = "http://127.0.0.1:8000"
+# Mặc định giữ nguyên cổng trong tài liệu; đổi khi cổng 8000 đã bị chiếm.
+BASE_URL = os.getenv("DAY13_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
 
 
 def main() -> None:

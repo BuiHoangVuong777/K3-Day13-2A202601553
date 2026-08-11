@@ -1,0 +1,230 @@
+{
+  "generated_at_utc": "2026-08-11T05:44:11.370779+00:00",
+  "record_count": 637,
+  "challenge": {
+    "challenge_id": "day13-k3-observability-v1",
+    "cohort": "K3",
+    "incident": "rag_slow",
+    "affected_feature": "refund",
+    "latency_threshold_ms": 2000
+  },
+  "metrics": {
+    "healthy_before": {
+      "window_start_utc": "2026-08-11T05:30:09.438093+00:00",
+      "window_end_utc": "2026-08-11T05:40:09.438093+00:00",
+      "requests": 34,
+      "responses": 34,
+      "latency_p50_ms": 152.0,
+      "latency_p95_ms": 1431.0,
+      "latency_p99_ms": 1527.0,
+      "latency_max_ms": 1527,
+      "cold_start_requests_over_1s": 7,
+      "latency_p95_ms_warm": 393.0,
+      "traffic_per_minute": 3.4,
+      "error_rate_pct": 0.0,
+      "error_breakdown": {},
+      "cost_usd_total": 0.069888,
+      "tokens_total": 6004,
+      "quality_mean": 0.8824
+    },
+    "incident": {
+      "window_start_utc": "2026-08-11T05:40:09.438093+00:00",
+      "window_end_utc": "2026-08-11T05:41:15.079540+00:00",
+      "requests": 10,
+      "responses": 10,
+      "latency_p50_ms": 2656.0,
+      "latency_p95_ms": 2658.0,
+      "latency_p99_ms": 2658.0,
+      "latency_max_ms": 2658,
+      "cold_start_requests_over_1s": 10,
+      "latency_p95_ms_warm": null,
+      "traffic_per_minute": 9.14,
+      "error_rate_pct": 0.0,
+      "error_breakdown": {},
+      "cost_usd_total": 0.020712,
+      "tokens_total": 1768,
+      "quality_mean": 0.86
+    },
+    "after_fix": {
+      "window_start_utc": "2026-08-11T05:41:15.079540+00:00",
+      "window_end_utc": "2026-08-11T05:41:17.950293+00:00",
+      "requests": 5,
+      "responses": 5,
+      "latency_p50_ms": 156.0,
+      "latency_p95_ms": 158.0,
+      "latency_p99_ms": 158.0,
+      "latency_max_ms": 158,
+      "cold_start_requests_over_1s": 0,
+      "latency_p95_ms_warm": 158.0,
+      "traffic_per_minute": 104.5,
+      "error_rate_pct": 0.0,
+      "error_breakdown": {},
+      "cost_usd_total": 0.010791,
+      "tokens_total": 913,
+      "quality_mean": 0.86
+    }
+  },
+  "incident_spans": [
+    {
+      "correlation_id": "req-957f6b6e",
+      "trace_id": "28de9d1de3a2d969f983e843a831cabc",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/28de9d1de3a2d969f983e843a831cabc",
+      "feature": "refund",
+      "latency_ms": 2658,
+      "retrieval_ms": 2501,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-b9af4bdf",
+      "trace_id": "e8d383ab61bef2c56cae7043bb4f0808",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/e8d383ab61bef2c56cae7043bb4f0808",
+      "feature": "refund",
+      "latency_ms": 2658,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-b170b5bb",
+      "trace_id": "61509d151ee84b8434029305181a1365",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/61509d151ee84b8434029305181a1365",
+      "feature": "refund",
+      "latency_ms": 2658,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 151,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-89fb8396",
+      "trace_id": "35d5aebec3989c2fb487d57734c48446",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/35d5aebec3989c2fb487d57734c48446",
+      "feature": "refund",
+      "latency_ms": 2657,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 151,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-5b9214e7",
+      "trace_id": "dacce96901a3bab3bd161a90d73aae0b",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/dacce96901a3bab3bd161a90d73aae0b",
+      "feature": "refund",
+      "latency_ms": 2656,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-91b68abe",
+      "trace_id": "55d3d32d70ed45140b36279b9bf6fbb2",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/55d3d32d70ed45140b36279b9bf6fbb2",
+      "feature": "refund",
+      "latency_ms": 2653,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-de8ac2fa",
+      "trace_id": "d75f2aadd9bd29cbe8bbe3a232077671",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/d75f2aadd9bd29cbe8bbe3a232077671",
+      "feature": "refund",
+      "latency_ms": 2653,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-3c034c7c",
+      "trace_id": "44dcf5034c0375f58ba542a1a15b5aa5",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/44dcf5034c0375f58ba542a1a15b5aa5",
+      "feature": "refund",
+      "latency_ms": 2652,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-7b9c7767",
+      "trace_id": "a5fe1e1c71b318d68177755279f5df57",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/a5fe1e1c71b318d68177755279f5df57",
+      "feature": "refund",
+      "latency_ms": 2652,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    },
+    {
+      "correlation_id": "req-11272f62",
+      "trace_id": "c43e58133e349ea75440f467893c978d",
+      "trace_url": "https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/c43e58133e349ea75440f467893c978d",
+      "feature": "refund",
+      "latency_ms": 2652,
+      "retrieval_ms": 2500,
+      "prompt_ms": 0,
+      "llm_ms": 150,
+      "slowest_span": "rag-retrieval"
+    }
+  ],
+  "slowest_span_counts": {
+    "rag-retrieval": 10
+  },
+  "evidence_log_lines": [
+    "{\"service\": \"api\", \"payload\": {\"message_preview\": \"What is your refund policy?\"}, \"event\": \"request_received\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"026c7a407135\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s01\", \"correlation_id\": \"req-957f6b6e\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:44.122720Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"28de9d1de3a2d969f983e843a831cabc\", \"trace_url\": \"https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/28de9d1de3a2d969f983e843a831cabc\", \"event\": \"trace_linked\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"026c7a407135\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s01\", \"correlation_id\": \"req-957f6b6e\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:44.124720Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"28de9d1de3a2d969f983e843a831cabc\", \"latency_ms\": 2658, \"retrieval_ms\": 2501, \"prompt_ms\": 0, \"llm_ms\": 150, \"slowest_span\": \"rag-retrieval\", \"event\": \"span_timings\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"026c7a407135\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s01\", \"correlation_id\": \"req-957f6b6e\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:46.783566Z\"}",
+    "{\"service\": \"api\", \"latency_ms\": 2658, \"tokens_in\": 45, \"tokens_out\": 140, \"cost_usd\": 0.002235, \"quality_score\": 0.9, \"payload\": {\"answer_preview\": \"Starter answer. Teams should improve this output logic and add better quality ch...\"}, \"event\": \"response_sent\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"026c7a407135\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s01\", \"correlation_id\": \"req-957f6b6e\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:46.785568Z\"}",
+    "{\"service\": \"api\", \"payload\": {\"message_preview\": \"What proof is required for a refund?\"}, \"event\": \"request_received\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"867738e76862\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s02\", \"correlation_id\": \"req-b9af4bdf\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:46.794583Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"e8d383ab61bef2c56cae7043bb4f0808\", \"trace_url\": \"https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/e8d383ab61bef2c56cae7043bb4f0808\", \"event\": \"trace_linked\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"867738e76862\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s02\", \"correlation_id\": \"req-b9af4bdf\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:46.796564Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"e8d383ab61bef2c56cae7043bb4f0808\", \"latency_ms\": 2658, \"retrieval_ms\": 2500, \"prompt_ms\": 0, \"llm_ms\": 150, \"slowest_span\": \"rag-retrieval\", \"event\": \"span_timings\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"867738e76862\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s02\", \"correlation_id\": \"req-b9af4bdf\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:49.456019Z\"}",
+    "{\"service\": \"api\", \"latency_ms\": 2658, \"tokens_in\": 47, \"tokens_out\": 150, \"cost_usd\": 0.002391, \"quality_score\": 0.9, \"payload\": {\"answer_preview\": \"Starter answer. Teams should improve this output logic and add better quality ch...\"}, \"event\": \"response_sent\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"867738e76862\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s02\", \"correlation_id\": \"req-b9af4bdf\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:49.458017Z\"}",
+    "{\"service\": \"api\", \"payload\": {\"message_preview\": \"Explain the refund window and required evidence.\"}, \"event\": \"request_received\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"b7fde6ae11b0\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s03\", \"correlation_id\": \"req-b170b5bb\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:54.802750Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"61509d151ee84b8434029305181a1365\", \"trace_url\": \"https://cloud.langfuse.com/project/cmso6invc04raad0dgqjxwdeq/traces/61509d151ee84b8434029305181a1365\", \"event\": \"trace_linked\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"b7fde6ae11b0\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s03\", \"correlation_id\": \"req-b170b5bb\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:54.803818Z\"}",
+    "{\"service\": \"agent\", \"trace_id\": \"61509d151ee84b8434029305181a1365\", \"latency_ms\": 2658, \"retrieval_ms\": 2500, \"prompt_ms\": 0, \"llm_ms\": 151, \"slowest_span\": \"rag-retrieval\", \"event\": \"span_timings\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"b7fde6ae11b0\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s03\", \"correlation_id\": \"req-b170b5bb\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:57.463099Z\"}",
+    "{\"service\": \"api\", \"latency_ms\": 2658, \"tokens_in\": 50, \"tokens_out\": 169, \"cost_usd\": 0.002685, \"quality_score\": 0.8, \"payload\": {\"answer_preview\": \"Starter answer. Teams should improve this output logic and add better quality ch...\"}, \"event\": \"response_sent\", \"model\": \"claude-sonnet-4-5\", \"user_id_hash\": \"b7fde6ae11b0\", \"feature\": \"refund\", \"env\": \"dev\", \"session_id\": \"k3-challenge-s03\", \"correlation_id\": \"req-b170b5bb\", \"level\": \"info\", \"ts\": \"2026-08-11T05:40:57.465009Z\"}"
+  ],
+  "langfuse_observations": [
+    {
+      "name": "run",
+      "type": "GENERATION",
+      "start": "2026-08-11T05:40:44.124Z",
+      "end": "2026-08-11T05:40:46.785Z",
+      "duration_ms": 2661,
+      "level": "DEFAULT"
+    },
+    {
+      "name": "rag-retrieval",
+      "type": "SPAN",
+      "start": "2026-08-11T05:40:44.126Z",
+      "end": "2026-08-11T05:40:46.627Z",
+      "duration_ms": 2501,
+      "level": "DEFAULT"
+    },
+    {
+      "name": "prompt-resolve",
+      "type": "SPAN",
+      "start": "2026-08-11T05:40:46.628Z",
+      "end": "2026-08-11T05:40:46.628Z",
+      "duration_ms": 0,
+      "level": "DEFAULT"
+    },
+    {
+      "name": "llm-generate",
+      "type": "SPAN",
+      "start": "2026-08-11T05:40:46.631Z",
+      "end": "2026-08-11T05:40:46.782Z",
+      "duration_ms": 151,
+      "level": "DEFAULT"
+    }
+  ]
+}
