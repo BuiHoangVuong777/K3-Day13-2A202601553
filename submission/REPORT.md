@@ -12,7 +12,8 @@
 - Điểm `validate_logs.py`: **100/100** (xem [`submission/evidence/validator_result.txt`](evidence/validator_result.txt))
 - Tổng số traces:
 - Số PII leak còn lại:
-- Link/đường dẫn dashboard:
+- Link/đường dẫn dashboard: xem ảnh `submission/evidence/dashboard_overview.png` (dashboard dựng từ `data/logs.jsonl`, không có URL công khai trong môi trường lab).
+
 ## 3. Logging và tracing
 
 - Evidence correlation ID: [`submission/evidence/api_log_sample.jsonl`](evidence/api_log_sample.jsonl) — hai dòng log `request_received` → `response_sent` của cùng một request `/chat` cùng `correlation_id=req-40b35680` (correlation ID ổn định xuyên suốt request).
